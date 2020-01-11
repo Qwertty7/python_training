@@ -1,1 +1,1 @@
-# repository for python_training7
+# repository for python_training
