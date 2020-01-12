@@ -20,21 +20,21 @@ class TestAddGroup(unittest.TestCase):
     def test_add_group (self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd, username="admin",password= "secret")
+        self.login(wd, username="admin", password="secret")
         self.open_group_page(wd)
         # created object Group and send parametrs to the constructor
         self.create_group(wd, Group(name="fhdjsk", header="fdkjlds", footer="fldsjf"))
         self.return_to_groups_page(wd)
         self.logout(wd)
 
-        def test_add_empty_group( self):
-            wd = self.wd
-            self.open_home_page(wd)
-            self.login(wd, username="admin", password="secret")
-            self.open_group_page(wd)
-            self.create_group(wd, Group(name="", header="", footer=""))
-            self.return_to_groups_page(wd)
-            self.logout(wd)
+    def test_add_empty_group(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_group_page(wd)
+        self.create_group(wd, Group(name="", header="", footer=""))
+        self.return_to_groups_page(wd)
+        self.logout(wd)
 
     def logout (self, wd):
         # logout
