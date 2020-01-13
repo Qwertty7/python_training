@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 import unittest
+from contact import Contact
 
 class TestAddContact(unittest.TestCase):
     def setUp(self):
@@ -14,7 +15,7 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, first_name="Elena", last_name="Talley", address="Moscow", email="g345@gmail.com")
+        self.contact_creation(wd, Contact(first_name="Elena", last_name="Talley", address="Moscow", email="g345@gmail.com"))
         self.return_to_contact_page(wd)
         self.logout(wd)
 
@@ -23,7 +24,7 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, first_name="", last_name="", address="", email="")
+        self.contact_creation(wd, Contact(first_name="", last_name="", address="", email=""))
         self.return_to_contact_page(wd)
         self.logout(wd)
 
@@ -32,7 +33,7 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, first_name="Petr", last_name="Ivanov", address="", email="")
+        self.contact_creation(wd, Contact(first_name="Petr", last_name="Ivanov", address="", email=""))
         self.return_to_contact_page(wd)
         self.logout(wd)
 
@@ -42,26 +43,26 @@ class TestAddContact(unittest.TestCase):
     def return_to_contact_page (self, wd):
         wd.find_element_by_link_text("home page").click()
 
-    def contact_creation (self, wd, first_name, last_name, address, email):
+    def contact_creation (self, wd, contact):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # fill contact's form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(first_name)
+        wd.find_element_by_name("firstname").send_keys(contact.first_name)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(last_name)
+        wd.find_element_by_name("lastname").send_keys(contact.last_name)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email)
+        wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("theform").click()
         # submit contact creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
