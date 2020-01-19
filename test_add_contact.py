@@ -12,32 +12,32 @@ class TestAddContact(unittest.TestCase):
 
     # method: test add group
     def test_add_contact(self):
-        wd = self.wd
-        self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, Contact(first_name="Elena", last_name="Talley", address="Moscow", email="g345@gmail.com"))
-        self.logout(wd)
+        self.login(username="admin", password="secret")
+        self.contact_creation(Contact(first_name="Elena", last_name="Talley", address="Moscow", email="g345@gmail.com"))
+        self.logout()
 
 
     def test_add_empty_contact (self):
-        wd = self.wd
-        self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, Contact(first_name="", last_name="", address="", email=""))
-        self.logout(wd)
+        self.login(username="admin", password="secret")
+        self.contact_creation(Contact(first_name="", last_name="", address="", email=""))
+        self.logout()
 
 
     def test_add_contact_with_empty_address_and_email(self):
-        wd = self.wd
-        self.login(wd, username="admin", password="secret")
-        self.contact_creation(wd, Contact(first_name="Petr", last_name="Ivanov", address="", email=""))
-        self.logout(wd)
+        self.login(username="admin", password="secret")
+        self.contact_creation(Contact(first_name="Petr", last_name="Ivanov", address="", email=""))
+        self.logout()
 
-    def logout (self, wd):
+    def logout (self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def return_to_contact_page (self, wd):
+    def return_to_contact_page (self):
+        wd = self.wd
         wd.find_element_by_link_text("home page").click()
 
-    def contact_creation (self, wd, contact):
+    def contact_creation (self, contact):
+        wd = self.wd
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -57,10 +57,11 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.return_to_contact_page(wd)
+        self.return_to_contact_page()
 
-    def login (self, wd, username, password):
-        self.open_home_page(wd)
+    def login (self, username, password):
+        wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").click()
@@ -68,7 +69,8 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def open_home_page (self, wd):
+    def open_home_page (self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
     def is_element_present(self, how, what):
