@@ -5,7 +5,6 @@ class SessionHelper:
 
     def __init__(self, app):
         self.app = app
-        self.wd = WebDriver()
 
     def login(self, username, password):
         wd = self.app.wd
