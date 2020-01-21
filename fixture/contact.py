@@ -36,11 +36,10 @@ class ContactHelper:
         wd = self.app.wd
     #     select first contact
         wd.find_element_by_name("selected[]").click()
-    #     wd.find_element_by_id("13").click()
-    # value="Delete"
-        #  wd.find_element_by_xpath("//input[@value='Delete']").click
+    #   wd.find_element_by_id("13").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
         # confirm delete contact popup window
-        # wd.switch_to_alert().accept()
+        wd.switch_to_alert().accept()
 
 
     def open_contact_page(self):
