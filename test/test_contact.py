@@ -2,6 +2,7 @@
 from model.contact import Contact
 
 
+
 def test_add_contact(app):
     app.session.login(user="admin", password="secret")
     app.contact.create(Contact(first_name="Elena", last_name="Talley", address="Moscow", email="g345@gmail.com"))

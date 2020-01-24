@@ -1,6 +1,6 @@
 
 
-def test_delete_first_contact(app):
+def test_print_all_groups(app):
     app.session.login(user="admin", password="secret")
-    app.contact.delete_first_contact()
+    app.group.print_all_groups()
     app.session.logout()
