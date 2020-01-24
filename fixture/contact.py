@@ -43,14 +43,23 @@ class ContactHelper:
         wd.switch_to_alert().accept()
 
 
-    def edit_contact(self):
+    def delete_all_contacts(self):
         wd = self.app.wd
-    #   select button edit
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
-    #   find field for mobile phone
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        # wd.find_element_by_name("mobile").send_keys(contact.mobile)
+    #     select first contact
+        wd.find_element_by_id("MassCB").click()
+    #   wd.find_element_by_id("13").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        # confirm delete contact popup window
+        wd.switch_to_alert().accept()
+
+    # def edit_contact(self):
+    #     wd = self.app.wd
+    # #   select button edit
+    #     wd.find_element_by_xpath("//img[@alt='Edit']").click()
+    # #   find field for mobile phone
+    #     wd.find_element_by_name("mobile").click()
+    #     wd.find_element_by_name("mobile").clear()
+    #     # wd.find_element_by_name("mobile").send_keys(contact.mobile)
     #
 
 
