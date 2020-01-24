@@ -1,3 +1,4 @@
+from model import contact
 
 
 class ContactHelper:
@@ -40,6 +41,17 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # confirm delete contact popup window
         wd.switch_to_alert().accept()
+
+
+    def edit_contact(self):
+        wd = self.app.wd
+    #   select button edit
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+    #   find field for mobile phone
+        wd.find_element_by_name("mobile").click()
+        wd.find_element_by_name("mobile").clear()
+        # wd.find_element_by_name("mobile").send_keys(contact.mobile)
+    #
 
 
     def open_contact_page(self):
