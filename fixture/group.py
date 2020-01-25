@@ -32,18 +32,12 @@ class GroupHelper:
         self.change_field_value("group_name", group.name)
         self.change_field_value("group_header", group.header)
         self.change_field_value("group_footer", group.footer)
-        #
-        # wd.find_element_by_name("group_header").click()
-        # wd.find_element_by_name("group_header").clear()
-        # wd.find_element_by_name("group_header").send_keys(group.header)
-        # wd.find_element_by_name("group_footer").click()
-        # wd.find_element_by_name("group_footer").clear()
-        # wd.find_element_by_name("group_footer").send_keys(group.footer)
+
 
     def delete_first_group(self):
         wd = self.app.wd
         self.open_group_page()
-        # self.select_first_group()
+        self.select_first_group()
         # submit delete
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
@@ -52,30 +46,16 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def edit_first_group(self):
-        wd = self.app.wd
-        self.open_group_page()
-        # self.select_first_group()
-    # find element edit group
-        wd.find_element_by_name("edit").click()
-    # find  group header
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-    # edit group's info
-        wd.find_element_by_name("group_header").send_keys("jjkjk")
-        wd.find_element_by_name("update").click()
-        self.return_to_groups_page()
-
-
     def modify_first_group(self, new_group_data):
         wd = self.app.wd
         self.open_group_page()
-        # self.select_first_group()
+        self.select_first_group()
         # open modification form
-        wd.find_element_by_name("update").click()
+        wd.find_element_by_name("edit").click()
+        # fill group form
         self.fill_group_form(new_group_data)
          # submit modification
-        wd.find_element_by_name("edit").click()
+        wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
     def open_group_page(self):
